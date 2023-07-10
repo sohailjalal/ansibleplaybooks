@@ -1,0 +1,17 @@
+- name: httpd installed
+  apt: name={{item}}
+  with_items:
+    - apache2
+    
+- name: custom index.html
+  ansible.builtin.copy:
+    dest: /var/www/html/index.html
+    content: |
+      This server is Installed by Ansible server.
+- name: httpd service enabled
+  ansible.builtin.service:
+    name: apache2
+    enabled: true
+    state: started
+      
+ 
